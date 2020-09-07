@@ -1,0 +1,9 @@
+﻿<Window x:Class="Test3Windows.WindowsTheme.WindowsThemeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Windows Theme" Height="430" Width="450" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <ComboBox Name ="cbTheme" ItemsSource="{Binding Themes}" HorizontalAlignment="Left" Margin="24,64,0,0" VerticalAlignment="Top" Width="400" 
+                  SelectionChanged="ComboBox_SelectionChanged"  Loaded="cbTheme_Loaded" />
+    </Grid>
+</Window>

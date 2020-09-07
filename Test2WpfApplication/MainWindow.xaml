@@ -1,0 +1,38 @@
+﻿<Window x:Class="Test2WpfApplication.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Test2WpfApplication"
+        mc:Ignorable="d"
+        Title="Test2WpfApplication" Height="500" Width="800" WindowStartupLocation="CenterScreen">
+
+    <Grid Margin="5 5 5 5 ">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <TextBox x:Name="SelectedView" IsReadOnly="True" Text="{Binding ElementName=FolderView, Path=SelectedItem.FullPath}" Margin="0 0 0 5" Padding="1 1 1 1"/>
+        <TreeView Grid.Row="1" x:Name="FolderView" ItemsSource="{Binding Drives}">
+            <TreeView.ItemContainerStyle>
+                <Style TargetType="{x:Type TreeViewItem}">
+                    <Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay}" />
+                </Style>
+            </TreeView.ItemContainerStyle>
+            <TreeView.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Remove" Click="DeleteMenuItem_Click" Name="DeleteMenuItem">
+                    </MenuItem>
+                </ContextMenu>
+            </TreeView.ContextMenu>
+            <TreeView.ItemTemplate>
+                <HierarchicalDataTemplate ItemsSource="{Binding Children}">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Width="15" Margin="3" Source="{Binding Type, Converter={x:Static local:HeaderToImageConverter.Instance}}" />
+                        <TextBlock VerticalAlignment="Center" Text="{Binding Name}" />
+                    </StackPanel>
+                </HierarchicalDataTemplate>
+            </TreeView.ItemTemplate>
+        </TreeView>
+    </Grid>
+</Window>
