@@ -50,7 +50,7 @@ namespace Test3Windows
         {
             return await Task.Run(() =>
             {
-                Thread.Sleep(1000);
+                Thread.Sleep(5000);
                 return "threaded text";
             });
         }
